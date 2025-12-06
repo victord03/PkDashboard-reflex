@@ -8,6 +8,8 @@ dependencies = []
 [dependency-groups]
 dev = [
     "ipython>=9.8.0",
+    "pytest>=9.0.1",
+    "pytest-cov>=7.0.0",
     "reflex>=0.8.21",
     "rich>=14.2.0",
     "ruff>=0.14.8",

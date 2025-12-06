@@ -3,6 +3,11 @@ from enum import Enum
 
 
 class PokemonType(Enum):
+    """Enumeration of all 18 Pokémon types.
+
+    Each type represents a distinct Pokémon elemental category with unique
+    offensive and defensive effectiveness characteristics.
+    """
     NORMAL = "Normal"
     FIRE = "Fire"
     WATER = "Water"
@@ -25,10 +30,54 @@ class PokemonType(Enum):
 
 @dataclass(frozen=True)
 class TypeRelationship:
+    """Represents a directional type effectiveness relationship.
+
+    Models how effective one Pokémon type is when attacking another type
+    using a damage multiplier. Frozen to ensure immutability of reference data.
+
+    Attributes:
+        attacker: The attacking Pokémon type
+        defender: The defending Pokémon type
+        multiplier: Damage multiplier (2.0=super effective, 0.5=not very effective, 0.0=immune)
+    """
     attacker: PokemonType
     defender: PokemonType
     multiplier: float
 
+
+# todo: evaluate if useful as an additional data integrity check (cons: if tables are updated in any way, this func also needs to be updated for the tests not to fail integrity test)
+def check_relationships_for_number_of_entries(relations: list[TypeRelationship]) -> None:
+    """Counts the number of entries per type (super effective, not very effective and immunities.
+
+    Args:
+        relations: List of TypeRelationship
+
+    Raises:
+        ValueError: If the amount of entries is not correct
+    """
+    ...
+
+
+def check_relationships_for_duplicates(relations: list[TypeRelationship]) -> None:
+    """Validates that no duplicate (attacker, defender) pairs exist in the relationships list.
+
+    This function ensures data integrity by detecting duplicate type matchups
+    that could result from copy-paste errors during data entry. Uses a set for
+    O(1) lookup performance.
+
+    Args:
+        relations: List of TypeRelationship objects to validate
+
+    Raises:
+        ValueError: If duplicate (attacker, defender) pair is found
+    """
+    seen = set()
+
+    for relation in relations:
+        current_tuple = (relation.attacker, relation.defender)
+        if current_tuple in seen:
+            raise ValueError(f"Duplicate entry found: ({relation.attacker}, {relation.defender}).")
+        seen.add(current_tuple)
 
 # Critical matchups ("super effective" and "not very effective")
 RELATIONSHIPS = [
@@ -190,3 +239,6 @@ RELATIONSHIPS = [
 
 ]
 
+
+# Validate data integrity on module import (fail-fast for duplicates)
+check_relationships_for_duplicates(RELATIONSHIPS)

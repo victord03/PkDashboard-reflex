@@ -1,6 +1,6 @@
 import reflex as rx
 from src.components.search_box import search_box
-from src.components.test_page import test_page
+from src.components.experimentation_page import test_page
 
 
 def index() -> rx.Component:

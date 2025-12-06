@@ -49,16 +49,27 @@ reflex run
 
 ## Project Status
 
-**Current Phase**: Core data model complete, moving to lookup functions and tests
+**Current Phase**: Core calculator functions complete, ready for UI integration
 
 Completed:
-- ✅ Project structure setup (`src/components`, `src/models`)
+- ✅ Project structure setup (`src/components`, `src/models`, `tests`)
 - ✅ Basic search box UI component
 - ✅ `PokemonType` Enum with all 18 types
 - ✅ `TypeRelationship` dataclass (frozen, with attacker/defender/multiplier)
 - ✅ Complete RELATIONSHIPS list (~150+ matchups)
 - ✅ `build_offensive_index()` function with proper type hints
+- ✅ `check_relationships_for_duplicates()` validation function (runs on module import)
+- ✅ Module-level `OFFENSIVE_INDEX` constant (precomputed static reference data)
+- ✅ Effectiveness lookup functions:
+  - `get_offensive_effectiveness()` - Returns damage multiplier for any matchup (including neutral 1.0x)
+  - `get_super_effective_against()` - Returns all types that receive 2x damage
+  - `get_not_very_effective_against()` - Returns all types that resist with 0.5x damage
+  - `get_immune_types()` - Returns all types with complete immunity (0x damage)
+- ✅ DRY helper function `_filter_by_multiplier()` to reduce code duplication
+- ✅ Comprehensive unit tests (21 tests passing) including edge cases and neutral matchups
+- ✅ Data integrity tests for duplicate detection
+- ✅ Google-style docstrings for all production and test code
 
 In Progress:
-- 🔨 Effectiveness lookup functions
-- 🔨 Unit tests for data model and calculator
+- 🔨 UI integration with Reflex
+- 🔨 Search box with auto-filtering
