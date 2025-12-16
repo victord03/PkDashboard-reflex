@@ -24,11 +24,12 @@ Simple web interface to lookup Pokemon type matchups:
 
 ## Features
 
-- **Auto-filtering search**: Type-ahead search (e.g., "Fi" → "Fire")
+- **Search interface**: Input-based type lookup with submit functionality
 - **Type effectiveness tables**:
   - Very effective against (2x damage)
   - Not very effective against (0.5x damage)
   - Immunities (0x damage, if applicable)
+- **Polished UI**: Card-based layout with custom background themes and responsive typography
 
 ## Tech Stack
 
@@ -49,11 +50,10 @@ reflex run
 
 ## Project Status
 
-**Current Phase**: Core calculator functions complete, ready for UI integration
+**Current Phase**: Polished UI with modular architecture, ready for dual-type calculator and type-ahead search
 
 Completed:
-- ✅ Project structure setup (`src/components`, `src/models`, `tests`)
-- ✅ Basic search box UI component
+- ✅ Project structure setup (`src/components`, `src/models`, `src/styles`, `tests`)
 - ✅ `PokemonType` Enum with all 18 types
 - ✅ `TypeRelationship` dataclass (frozen, with attacker/defender/multiplier)
 - ✅ Complete RELATIONSHIPS list (~150+ matchups)
@@ -69,7 +69,28 @@ Completed:
 - ✅ Comprehensive unit tests (21 tests passing) including edge cases and neutral matchups
 - ✅ Data integrity tests for duplicate detection
 - ✅ Google-style docstrings for all production and test code
+- ✅ **UI Integration:**
+  - Search box component with submit button
+  - State management with reactive vars
+  - Dynamic routing (`/type/[type_name]`)
+  - Results page displaying effectiveness data
+  - Computed vars that read from URL params
+  - `rx.foreach` for rendering type lists
+  - Defensive programming (empty state handling)
+- ✅ **Visual Styling & Layout:**
+  - Professional card-based layout with proper spacing, borders, and shadows
+  - Background image support with customizable sky theme
+  - Proper color contrast (white text on dark backgrounds, dark text on white cards)
+  - Titles positioned above result boxes (not inside)
+  - Responsive typography hierarchy
+- ✅ **Code Architecture Refactoring:**
+  - Functional composition with reusable component functions (`src/components/results_components.py`)
+  - Extracted style dictionaries (`src/styles/results_page_styles.py`, `src/styles/background_sky.py`)
+  - Modular helper functions: `_effectiveness_section()`, `_result_box()`, `_section_title()`
+  - Dict unpacking for clean style application
+  - Dramatically improved code readability (90+ lines → 3 function calls)
 
 In Progress:
-- 🔨 UI integration with Reflex
-- 🔨 Search box with auto-filtering
+- 🔨 Homepage navigation icon (pokeball icon created, positioning pending)
+- 🔨 Type-ahead search filtering
+- 🔨 Dual-type effectiveness calculator

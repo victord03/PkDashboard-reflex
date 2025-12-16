@@ -20,11 +20,36 @@
   - [x] Write unit tests for lookup functions (21 tests passing)
   - [ ] Create dual-type effectiveness calculator
   - [ ] Implement defensive index (optional optimization for meta-analysis)
-- [ ] Build search box with auto-filtering
-- [ ] Display effectiveness tables for selected type
+- [x] Build search box with submit functionality
+  - [x] Create search input component
+  - [x] Add submit button
+  - [x] Implement State management for user input
+  - [x] Connect event handlers (on_change, on_click)
+  - [x] Resolve circular import issues (pass handlers as props)
+- [x] Display effectiveness tables for selected type
+  - [x] Implement dynamic routing (`/type/[type_name]`)
+  - [x] Create results page with three data boxes
+  - [x] Add computed vars to read URL params and call calculator functions
+  - [x] Use `rx.foreach` to render type lists
+  - [x] Add defensive programming for empty states
 
 ## Phase 2: Enhancements
-- [ ] Add visual styling (colors per type)
+- [x] Add visual styling and layout
+  - [x] Professional card-based UI with borders, shadows, rounded corners
+  - [x] Background image support (customizable sky theme)
+  - [x] Proper color contrast and typography hierarchy
+  - [x] Titles positioned above result boxes
+  - [ ] Type-specific colors and badges
+- [x] Code architecture refactoring
+  - [x] Extract reusable component functions (`_effectiveness_section()`, `_result_box()`, `_section_title()`)
+  - [x] Create style dictionaries in `src/styles/` for DRY styling
+  - [x] Implement functional composition patterns
+  - [x] Apply dict unpacking for clean style application
+- [ ] Navigation improvements
+  - [x] Create pokeball icon component for homepage navigation
+  - [ ] Fix icon positioning (absolute positioning in top-left corner)
+- [ ] Search enhancements
+  - [ ] Implement type-ahead filtering (auto-suggest Pokemon types as user types)
 - [ ] Add Offensive/Defensive mode selector (dropdown UI)
   - [ ] Offensive mode: Show how selected type's moves perform against all types
   - [ ] Defensive mode: Advanced defensive analysis for selected type
